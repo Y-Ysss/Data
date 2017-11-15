@@ -1,0 +1,37 @@
+<script type="text/javascript">
+$.getJSON('https://api.github.com/users/Yoseatlly/repos').then(function(data) {
+    let insertData = '';
+    data.forEach(function(repos) {
+        let date = (repos.updated_at).replace('T', ' ').slice(0, -1);
+        let desc = repos.description === null ? '' : repos.description + '<br>';
+        let strLang = '';
+        $.ajaxSetup({
+        	async: false
+        });
+        $.getJSON(repos.languages_url).then(function(list) {
+            if (list.length !== 0) {
+                Object.keys(list).forEach(function(lang) {
+                    strLang += '<span class="chip" >' + lang + '</span>';
+                });
+            }
+        });
+        $.ajaxSetup({
+        	async: true
+        });
+        insertData += '<div class="card"><div class="cardTitle"><h2>' + repos.name + '</h2><span class="sub">Update:' + date + '</span>' + strLang + '</div><div class="cardContents">' + desc + '<a href="' + repos.html_url + '"></a></div></div>';
+    });
+    $('.loader').hide();
+    $('.loaderLabel').hide();
+    $('#bodyMain').append(insertData);
+    $('.card').animate({
+        'margin-top': 0,
+        'opacity': 1
+    }, 500);
+});
+</script>
+<h1>Projects</h1>
+<div class="loader">
+    <div class="cube1"></div>
+    <div class="cube2"></div>
+</div>
+<span class="loaderLabel">Now_Loading</span>
