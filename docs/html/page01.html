@@ -18,18 +18,18 @@ $.getJSON('https://api.github.com/users/Yoseatlly/repos').then(function(data) {
         $.ajaxSetup({
         	async: true
         });
-        insertData += '<div class="card"><div class="cardTitle"><h2>' + repos.name + '</h2><span class="sub">Update:' + date + '</span>' + strLang + '</div><div class="cardContents">' + desc + '<a href="' + repos.html_url + '"></a></div></div>';
+        insertData += '<div class="card"><div class="cardTitle"><span class="ch2">' + repos.name + '</span><span class="sub">Update:' + date + '</span>' + strLang + '</div><div class="cardContents">' + desc + '<a href="' + repos.html_url + '"></a></div></div>';
     });
     $('.loader').hide();
     $('.loaderLabel').hide();
     $('#bodyMain').append(insertData);
     $('.card').animate({
-        'margin-top': 0,
+        'margin-top': '1rem',
         'opacity': 1
     }, 500);
 });
 </script>
-<h1>Projects</h1>
+<span class="ch1">Projects</span>
 <div class="loader">
     <div class="cube1"></div>
     <div class="cube2"></div>
