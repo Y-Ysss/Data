@@ -54,7 +54,7 @@ function setMarkdown(dataUrl) {
 }
 
 function getRepos(dataUrl) {
-    const token = "?access_token=f39459812151ac2ca1d564274106f3197f72164e";
+    const token = "";
     $.getJSON(dataUrl + token).then(function(data) {
         let insertData = '';
         data.forEach(function(repos) {
