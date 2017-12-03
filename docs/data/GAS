@@ -1,0 +1,19 @@
+function getInsertData(url) {
+  var token = "?access_token=f39459812151ac2ca1d564274106f3197f72164e";
+  var response = UrlFetchApp.fetch(url + token);
+  var data = JSON.parse(response.getContentText());
+  var insertData = "";
+  data.forEach(function(repos) {
+    var date = (repos.updated_at).replace('T', ' ').slice(0, -1);
+    var desc = repos.description === null ? '' : repos.description + '<br>';
+    var strLang = '';
+    var list = UrlFetchApp.fetch(repos.languages_url + token);
+    if (list.length !== 0) {
+      Object.keys(list).forEach(function(lang) {
+        strLang += '<span class="chip" >' + lang + '</span>';
+      });
+    }
+    insertData += '<div repos="' + repos.id + '" class="card"><div class="cardTitle"><span class="ch2">' + repos.name + '</span><span class="sub">Update:' + date + '</span>' + strLang + '</div><div class="cardContents">' + desc + '<a href="' + repos.html_url + '"></a></div><div class="cardMore">More</div></div>';
+  });
+  Logger.log(insertData);
+}
