@@ -1,28 +1,3 @@
-$(function() {
-
-    loadMain('home');
-    rippleEffect();
-    // let func = {
-    //     home: function() {},
-    //     about: function() {},
-    //     page1: function() {}
-    // };
-
-    $('a').click(function() {
-        loadMain($(this).attr("id"));
-    });
-
-
-    // $(document).on("click",".cardMore", function() {
-    //     const parent = $(this).parent();
-    //     const repos = parent.attr('repos');
-    //     parent.addClass('cardMax');
-    //     console.log(repos);
-
-    // });
-
-});
-
 function loadMain(name) {
     $('#bodyMain').load('html/' + name + '.html', function() {
         $(this).children('.card').animate({
@@ -85,3 +60,28 @@ function getRepos(dataUrl) {
         }, 500);
     });
 }
+
+$(function() {
+
+    loadMain('home');
+    rippleEffect();
+    // let func = {
+    //     home: function() {},
+    //     about: function() {},
+    //     page1: function() {}
+    // };
+
+    $('a').click(function() {
+        loadMain($(this).attr("id"));
+    });
+
+
+    // $(document).on("click",".cardMore", function() {
+    //     const parent = $(this).parent();
+    //     const repos = parent.attr('repos');
+    //     parent.addClass('cardMax');
+    //     console.log(repos);
+
+    // });
+
+});
